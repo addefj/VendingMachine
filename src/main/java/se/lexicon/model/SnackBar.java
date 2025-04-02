@@ -9,16 +9,14 @@ public class SnackBar extends Product {
 
     //constructor
     public SnackBar(double price, String productName, BarFlavour barFlavour, boolean nuts, NutType nutType) {
-        super(price, productName);
-        setNuts(nuts);
-        setBarFlavour(barFlavour);
+        this(price, productName, barFlavour, nuts);
         setNutType(nutType);
     }
-    //todo: chain constructor
+
     public SnackBar(double price, String productName, BarFlavour barFlavour, boolean nuts){
         super(price, productName);
-        setNuts(nuts);
         setBarFlavour(barFlavour);
+        setNuts(nuts);
     }
 
     //getters and setters

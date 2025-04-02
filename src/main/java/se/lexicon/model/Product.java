@@ -3,15 +3,20 @@ package se.lexicon.model;
 public abstract class Product {
 
     //fields
+    private static int sequencer = 0;
     private int id;
     private double price;
     private String productName;
 
     //constructor
-    public Product(int id, double price, String productName) {
-        this.id = id;
+    public Product(double price, String productName) {
+        id = getNextId();
         setPrice(price);
         setProductName(productName);
+    }
+
+    public int getNextId(){
+    return ++sequencer;
     }
 
     //getters and setters

@@ -3,14 +3,14 @@ package se.lexicon.model;
 public class Chips extends Product {
 //todo: add error handling
     //fields
-    private boolean ribbed;
-    private ChipsFlavour chipsFlavour;
+    private final boolean ribbed;
+    private final ChipsFlavour chipsFlavour;
 
     //constructor
     public Chips(double price, String productName, boolean ribbed, ChipsFlavour chipsFlavour) {
         super(price, productName);
-        setRibbed(ribbed);
-        setChipsFlavour(chipsFlavour);
+        this.ribbed = ribbed;
+        this.chipsFlavour = chipsFlavour;
     }
 
     //getters and setters
@@ -18,16 +18,8 @@ public class Chips extends Product {
         return ribbed;
     }
 
-    public void setRibbed(boolean ribbed) {
-        this.ribbed = ribbed;
-    }
-
     public ChipsFlavour getChipsFlavour() {
         return chipsFlavour;
-    }
-
-    public void setChipsFlavour(ChipsFlavour chipsFlavour) {
-        this.chipsFlavour = chipsFlavour;
     }
 
     //other methods
@@ -37,9 +29,10 @@ public class Chips extends Product {
                 + "\nRibbed: " + isRibbed();
     }
 
+
     @Override
     public String use() {
-        return "Id: " + getId() + "\nName: " + getProductName() + "\nFlavour: " + getChipsFlavour() +"\nPrice: " + getPrice();
+        return "Id: " + getId() + "\nName: " + getProductName() +"\nPrice: " + getPrice();
     }
 
 

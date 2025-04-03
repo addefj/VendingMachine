@@ -58,17 +58,21 @@ public class VendingMachineImpl implements IVendingMachine {
 
     @Override
     public String getDescription(int id) {
-        return searchProductMatchingId(id);
+        Product product = searchProductMatchingId(id);
+        if(product != null) {
+            return product.examine();
+        }
+        return "Product not found";
     }
 
     //method for finding the index of the requested product id.
-    public String searchProductMatchingId(int id) {
+    public Product searchProductMatchingId(int id) {
         for (Product product : products) {
             if (product.getId() == id) {
-                return product.examine(); //returns the description of the product for the matching id.
+                return product; //returns product with matching id.
             }
         }
-        return "Product id not found";
+        return null;
     }
 
         @Override

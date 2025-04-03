@@ -3,14 +3,14 @@ package se.lexicon.model;
 public class Soda extends Product{
     //todo: add error handling
     //fields
-    private boolean carbonated;
-    private SodaFlavour sodaFlavour;
+    private final boolean carbonated;
+    private final SodaFlavour sodaFlavour;
 
     //constructor
     public Soda(double price, String productName, boolean carbonated, SodaFlavour sodaFlavour) {
         super(price, productName);
-        setCarbonated(carbonated);
-        setSodaFlavour(sodaFlavour);
+        this.carbonated = carbonated;
+        this.sodaFlavour = sodaFlavour;
     }
 
     //getters and setters
@@ -18,16 +18,8 @@ public class Soda extends Product{
         return carbonated;
     }
 
-    public void setCarbonated(boolean carbonated) {
-        this.carbonated = carbonated;
-    }
-
     public SodaFlavour getSodaFlavour() {
         return sodaFlavour;
-    }
-
-    public void setSodaFlavour(SodaFlavour sodaFlavour) {
-        this.sodaFlavour = sodaFlavour;
     }
 
     //other methods
@@ -39,7 +31,7 @@ public class Soda extends Product{
 
     @Override
     public String use() {
-        return "Id: " + getId() + "\nName: " + getProductName() + "\nFlavour: " + getSodaFlavour() + "\nPrice: " + getPrice();
+        return "Id: " + getId() + "\nName: " + getProductName() + "\nPrice: " + getPrice();
     }
 
 }

@@ -11,8 +11,8 @@ public abstract class Product {
     //constructor
     public Product(double price, String productName) {
         id = getNextId();
-        setPrice(price);
-        setProductName(productName);
+        this.price = price;
+        this.productName = productName;
     }
 
     public int getNextId(){
@@ -28,16 +28,8 @@ public abstract class Product {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getProductName() {
         return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 
     //methods

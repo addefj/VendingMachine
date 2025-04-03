@@ -1,7 +1,7 @@
 package se.lexicon.model;
 
 public abstract class Product {
-
+    //todo: add error handling
     //fields
     private static int sequencer = 0;
     private int id;

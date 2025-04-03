@@ -1,7 +1,7 @@
 package se.lexicon.model;
 
 public class SnackBar extends Product {
-
+    //todo: add error handling
     //fields
     private boolean nuts;
     private BarFlavour barFlavour;

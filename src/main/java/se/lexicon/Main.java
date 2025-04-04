@@ -14,7 +14,7 @@ public class Main {
                 new SnackBar( 15, "Snack that!", BarFlavour.CARAMEL, false)
         };
 
-        //creating
+        //creating vending machine object
         VendingMachineImpl metroV = new VendingMachineImpl(products);
 
         //testing add currency method vid valid amount

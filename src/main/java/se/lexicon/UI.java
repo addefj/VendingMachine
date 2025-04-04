@@ -12,11 +12,14 @@ public class UI {
 
         boolean running = true;
         int id;
+        int option = 0;
 
         //initiating product array filled with products
         Product[] products = {
                 new Soda(20, "Captain's Fizzy Soda", true, SodaFlavour.ORANGE),
+                new Soda(20, "Captain's Raspberry soda", false, SodaFlavour.RASPBERRY),
                 new Chips(30, "Crispy's Crispies", false, ChipsFlavour.SALTED),
+                new Chips(30, "Crispy's Waves", true, ChipsFlavour.BARBEQUE),
                 new SnackBar(15, "Snack that! Chocolate", BarFlavour.CHOCOLATE, true, NutType.PEANUT),
                 new SnackBar(15, "Snack that! Caramel", BarFlavour.CARAMEL, false)
         };
@@ -42,7 +45,12 @@ public class UI {
             System.out.println("------------------------------");
             System.out.println("Choose an option: ");
 
-            int option = userInput.nextInt(); //read user input
+            try {
+                option = userInput.nextInt(); //read user input
+            } catch (Exception e) {
+                System.out.println("Invalid input. " + e.getMessage());
+            }
+
 
             switch (option){
                 case 1: //display all products

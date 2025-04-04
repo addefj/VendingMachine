@@ -19,7 +19,7 @@ public class VendingMachineImpl implements IVendingMachine {
     @Override
     public void addCurrency(int amount) {
         if (isValidAmount(amount)) {
-            depositPool = amount;
+            depositPool += amount;
         } else {
             throw new IllegalArgumentException("Not a valid denomination");
         }

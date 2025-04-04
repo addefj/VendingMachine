@@ -1,7 +1,7 @@
 package se.lexicon.model;
 
 public class Chips extends Product {
-//todo: add error handling
+
     //fields
     private final boolean ribbed;
     private final ChipsFlavour chipsFlavour;

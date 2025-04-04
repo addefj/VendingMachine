@@ -1,12 +1,12 @@
 package se.lexicon.model;
 
 public abstract class Product {
-    //todo: add error handling
+
     //fields
     private static int sequencer = 0;
-    private int id;
-    private double price;
-    private String productName;
+    private final int id;
+    private final double price;
+    private final String productName;
 
     //constructor
     public Product(double price, String productName) {

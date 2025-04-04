@@ -1,7 +1,7 @@
 package se.lexicon.model;
 
 public class Soda extends Product{
-    //todo: add error handling
+
     //fields
     private final boolean carbonated;
     private final SodaFlavour sodaFlavour;

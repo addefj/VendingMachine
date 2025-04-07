@@ -3,6 +3,7 @@ package se.lexicon;
 import se.lexicon.data.VendingMachineImpl;
 import se.lexicon.model.*;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UI {
@@ -11,8 +12,8 @@ public class UI {
 
 
         boolean running = true;
-        int id;
-        int option = 0;
+        int id; //stores id entered by user
+        int option; //stores menu option entered by user
 
         //initiating product array filled with products
         Product[] products = {
@@ -30,7 +31,7 @@ public class UI {
         System.out.println();
         System.out.println("Welcome to my vending machine"); //display welcoming message
 
-        while(running) {
+        while (running) {
 
             //display main menu
             System.out.println();
@@ -47,24 +48,25 @@ public class UI {
 
             try {
                 option = userInput.nextInt(); //read user input
-            } catch (Exception e) {
-                System.out.println("Invalid input. " + e.getMessage());
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Enter an integer from 1-6");
+                userInput.next(); //clears scanner buffer
+                continue;
             }
 
-
-            switch (option){
+            switch (option) {
                 case 1: //display all products
-                String[] items = metroV.getProducts();
+                    String[] items = metroV.getProducts();
                     System.out.println("==  List of available items  ==");
-                for(String item: items){
-                    System.out.println(item);
-                    System.out.println("--------------------------------");
-                }
+                    for (String item : items) {
+                        System.out.println(item);
+                        System.out.println("--------------------------------");
+                    }
                     break;
 
                 case 2: //examine product
                     System.out.println("Enter id of product to examine");
-                    id  = userInput.nextInt();
+                    id = userInput.nextInt();
                     String description = metroV.getDescription(id);
                     System.out.println("--------------------------------");
                     System.out.println(description);
@@ -75,7 +77,7 @@ public class UI {
                     System.out.println("Valid denominations are (1, 2, 5, 10, 20, 50, 100, 200, 500, 1000)");
                     System.out.println("Enter amount of SEK to add:");
 
-                    int amount  = userInput.nextInt();
+                    int amount = userInput.nextInt();
                     metroV.addCurrency(amount);
 
                     System.out.println("You added " + amount + " SEK");
@@ -95,7 +97,7 @@ public class UI {
                     break;
 
                 case 6: //exit (return change)
-                    if(metroV.getBalance() > 0){
+                    if (metroV.getBalance() > 0) {
                         int changeOnExit = metroV.endSession();
                         System.out.println("You chose to exit. Returned change: " + changeOnExit + " SEK");
                     }
@@ -104,7 +106,7 @@ public class UI {
                     break;
 
                 default:
-                    System.out.println("Invalid option, Try again!");
+                    System.out.println("Invalid option, enter an integer from 1-6 ");
                     break;
 
             }

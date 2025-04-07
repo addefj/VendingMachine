@@ -8,8 +8,14 @@ import java.util.Scanner;
 
 public class UI {
 
-    public static void main(String[] args) {
+    // ANSI color codes
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String CYAN = "\u001B[36m";
 
+    public static void main(String[] args) {
 
         boolean running = true;
         int id; //stores id entered by user
@@ -35,21 +41,21 @@ public class UI {
 
             //display main menu
             System.out.println();
-            System.out.println("========  Main menu  =========");
-            System.out.println("Current balance: " + metroV.getBalance() + " SEK");
-            System.out.println("1. Display available products");
-            System.out.println("2. Examine a product");
-            System.out.println("3. Add currency");
-            System.out.println("4. Buy a product");
-            System.out.println("5. End session and return change");
-            System.out.println("6. Exit");
-            System.out.println("------------------------------");
-            System.out.println("Choose an option: ");
+            System.out.println(GREEN + "========  Main menu  =========" + RESET);
+            System.out.println(BLUE + "Current balance: " + metroV.getBalance() + " SEK" + RESET);
+            System.out.println(GREEN + "1." + RESET + " Display available products");
+            System.out.println(GREEN + "2." + RESET + " Examine a product");
+            System.out.println(GREEN + "3." + RESET + " Add currency");
+            System.out.println(GREEN + "4." + RESET + " Buy a product");
+            System.out.println(GREEN + "5." + RESET + " End session and return change");
+            System.out.println(RED + "6. Exit" + RESET);
+            System.out.println(GREEN + "------------------------------" + RESET);
+            System.out.println(CYAN + "Choose an option: " + RESET);
 
             try {
                 option = userInput.nextInt(); //read user input
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Enter an integer from 1-6");
+                System.out.println(RED + "Invalid input. Enter an integer from 1-6" + RESET);
                 userInput.next(); //clears scanner buffer
                 continue;
             }
@@ -57,56 +63,56 @@ public class UI {
             switch (option) {
                 case 1: //display all products
                     String[] items = metroV.getProducts();
-                    System.out.println("==  List of available items  ==");
+                    System.out.println(GREEN + "==  List of available items  ==" + RESET);
                     for (String item : items) {
                         System.out.println(item);
-                        System.out.println("--------------------------------");
+                        System.out.println(GREEN + "--------------------------------" + RESET);
                     }
                     break;
 
                 case 2: //examine product
-                    System.out.println("Enter id of product to examine");
+                    System.out.println(CYAN + "Enter id of product to examine:" + RESET);
                     id = userInput.nextInt();
                     String description = metroV.getDescription(id);
-                    System.out.println("--------------------------------");
+                    System.out.println(GREEN + "--------------------------------" + RESET);
                     System.out.println(description);
                     break;
 
                 case 3: //add currency
-                    System.out.println("You chose to add currency");
-                    System.out.println("Valid denominations are (1, 2, 5, 10, 20, 50, 100, 200, 500, 1000)");
-                    System.out.println("Enter amount of SEK to add:");
+                    System.out.println(GREEN + "You chose to add currency" + RESET);
+                    System.out.println(GREEN + "Valid denominations are (1, 2, 5, 10, 20, 50, 100, 200, 500, 1000)" + RESET);
+                    System.out.println(CYAN + "Enter amount of SEK to add:" + RESET);
 
                     int amount = userInput.nextInt();
                     metroV.addCurrency(amount);
 
-                    System.out.println("You added " + amount + " SEK");
+                    System.out.println(GREEN + "You added " + amount + " SEK" + RESET);
                     break;
 
                 case 4: //buy product
-                    System.out.println("Enter id of product to buy");
+                    System.out.println(GREEN + "Enter id of product to buy" + RESET);
                     id = userInput.nextInt();
                     Product product = metroV.request(id);
-                    System.out.println("You bought:\n" + product.getProductName());
-                    System.out.println("It was delicious");
+                    System.out.println(GREEN + "You bought:\n" + RESET + product.getProductName());
+                    System.out.println(CYAN + "It was delicious" + RESET);
                     break;
 
                 case 5: //end session (return change)
                     int change = metroV.endSession();
-                    System.out.println("Session ended. Returned change: " + change + " SEK");
+                    System.out.println(GREEN + "Session ended. Returned change: " + change + " SEK" + RESET);
                     break;
 
                 case 6: //exit (return change)
                     if (metroV.getBalance() > 0) {
                         int changeOnExit = metroV.endSession();
-                        System.out.println("You chose to exit. Returned change: " + changeOnExit + " SEK");
+                        System.out.println(GREEN + "You chose to exit. Returned change: " + changeOnExit + " SEK" + RESET);
                     }
-                    System.out.println("Welcome back another time!");
+                    System.out.println(GREEN + "Welcome back another time!" + RESET);
                     running = false;
                     break;
 
                 default:
-                    System.out.println("Invalid option, enter an integer from 1-6 ");
+                    System.out.println(RED + "Invalid option, enter an integer from 1-6 " + RESET);
                     break;
 
             }

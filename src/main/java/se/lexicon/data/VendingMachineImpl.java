@@ -2,6 +2,9 @@ package se.lexicon.data;
 
 import se.lexicon.model.Product;
 
+import static se.lexicon.UI.RED;
+import static se.lexicon.UI.RESET;
+
 public class VendingMachineImpl implements IVendingMachine {
 
     //fields
@@ -21,7 +24,7 @@ public class VendingMachineImpl implements IVendingMachine {
         if (isValidAmount(amount)) {
             depositPool += amount;
         } else {
-            throw new IllegalArgumentException("Not a valid denomination");
+            throw new IllegalArgumentException(RED+"Not a valid denomination"+RESET);
         }
     }
 
@@ -45,13 +48,13 @@ public class VendingMachineImpl implements IVendingMachine {
     public Product request(int id) {
         Product reqProduct = searchProductMatchingId(id);
         if(reqProduct == null) {
-            throw new IllegalArgumentException("Product with id: " + id + " was not found");
+            throw new IllegalArgumentException(RED+"Product with id: " + id + " was not found"+RESET);
         }
         if(reqProduct.getPrice() <= getBalance()){
             depositPool -= (int) reqProduct.getPrice();
             return reqProduct;
         }
-        throw new IllegalArgumentException("Product with id: " + id + " was too expensive");
+        throw new IllegalArgumentException(RED+"Product with id: " + id + " was too expensive"+RESET);
     }
 
     //resets deposit pool to 0, and returns remaining change
@@ -69,7 +72,7 @@ public class VendingMachineImpl implements IVendingMachine {
         if (product != null) {
             return product.examine();
         }
-        throw new IllegalArgumentException("Product with id: " + id + " was not found");
+        throw new IllegalArgumentException(RED+"Product with id: " + id + " was not found"+RESET);
     }
 
     //method for finding the index of the requested product id.
